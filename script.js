@@ -26,7 +26,7 @@ window.onclick = function(event){
 }
 
 function addBookToLibrary(e) {
-    e.preventDefault();
+    e.preventDefault(); //Needed to stop from from submitting
     var newBook = getBookData();
     myLibrary.push(newBook);
     displayBooks();
@@ -62,11 +62,16 @@ function createCard(book){
 
     remove.classList.add("remove-button");
     remove.textContent = "Remove";
-    
+
+    //Stores the myLibrary index of a book card as an attribute
     card.setAttribute('data-index', myLibrary.length);
+
+    //Uses the index to remove card.
     remove.onclick = function(){
         removeCard(card.getAttribute('data-index'));
     }
+
+    //Sets read/unread style
     if(book.read){
         card.classList.add('read-card');
         read.textContent =  "Read";
