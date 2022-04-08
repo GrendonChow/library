@@ -27,7 +27,6 @@ body{
 h1{
     color: var(--color-background);
     text-align: center;
-
 }
 
 .btn-container{
@@ -88,6 +87,18 @@ input:focus{
     outline: 2px solid var(--color-accent)
 }
 
+.content{
+    background-color: var(--color-background);
+    height: 100vh;
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-rows: min-content;
+    grid-auto-rows: min-content;
+    gap: 10px;
+    justify-items: center;
+    align-items: center;
+}
+
 .read-card, .unread-card{
     display:flex;
     flex-direction: column;
@@ -96,7 +107,6 @@ input:focus{
     background-color: var(--color-secondary);
     border-radius: 5px;
     padding: 10px;
-    
 }
 
 .read-card{
@@ -112,14 +122,8 @@ input:focus{
     transform: scale(1.03);
 }
 
-.content{
-    background-color: var(--color-background);
-    height: 100vh;
-    display:grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    grid-template-rows: min-content;
-    grid-auto-rows: min-content;
-    gap: 10px;
-    justify-items: center;
-    align-items: center;
+.remove-button{
+    background-color: #ff6961;
+    font-size: 20px;
+    border-radius: 5px;
 }

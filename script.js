@@ -1,6 +1,7 @@
 let myLibrary = [];
 
-function Book(title, author, pages, read) {
+function Book(index, title, author, pages, read) {
+    this.index = index;
     this.title = title,
     this.author = author,
     this.pages = pages,
@@ -40,7 +41,7 @@ function getBookData(){
     pages = document.getElementById('pages').value;
     read = document.getElementById('read').checked;
     console.log(read);
-    return new Book(title,author,pages,read);
+    return new Book(myLibrary.length, title,author,pages,read);
 }
 
 function displayBooks(){
@@ -57,7 +58,15 @@ function createCard(book){
     const author = document.createElement('p');
     const pages = document.createElement('p');
     const read = document.createElement('p');
+    const remove = document.createElement('button');
 
+    remove.classList.add("remove-button");
+    remove.textContent = "Remove";
+    
+    card.setAttribute('data-index', myLibrary.length);
+    remove.onclick = function(){
+        removeCard(card.getAttribute('data-index'));
+    }
     if(book.read){
         card.classList.add('read-card');
         read.textContent =  "Read";
@@ -75,11 +84,18 @@ function createCard(book){
     card.appendChild(author);
     card.appendChild(pages);
     card.appendChild(read);
+    card.appendChild(remove);
     content.appendChild(card);
 }
 
+//Removes card based on data-index
+function removeCard(index){
+    myLibrary.splice(index-1, 1)
+    displayBooks();
+}
+
 //Default books
-myLibrary.push(new Book('Awesome book', 'John Smith', 1204, true))
-myLibrary.push(new Book('A Very Boring Tale', 'A.J Stevens', 543, false))
+myLibrary.push(new Book(myLibrary.length, 'Awesome book', 'John Smith', 1204, true))
+myLibrary.push(new Book(myLibrary.length, 'A Very Boring Tale', 'A.J Stevens', 543, false))
 
 displayBooks();
