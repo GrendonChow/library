@@ -103,18 +103,23 @@ input:focus{
     display:flex;
     flex-direction: column;
     align-items: center;
-    width: 300px;
+    width: 275px;
     background-color: var(--color-secondary);
     border-radius: 5px;
     padding: 10px;
+    gap: 10px;
+}
+
+p{
+    margin:0;
 }
 
 .read-card{
-    border-left: 10px #77dd77 solid
+    border-left: 10px #77dd77 solid;
 }
 
 .unread-card{
-    border-left: 10px #ff6961 solid
+    border-left: 10px #ff6961 solid;
 }
 
 .unread-card:hover, .read-card:hover{
@@ -122,8 +127,26 @@ input:focus{
     transform: scale(1.03);
 }
 
-.remove-button{
-    background-color: #ff6961;
+.read-button{
+    background-color: var(--color-secondary);
+    width: 100%;
     font-size: 20px;
     border-radius: 5px;
+    border: 3px solid var(--color-accent);
+}
+
+.read-button:hover{
+    background-color: var(--color-accent);
+}
+
+.remove-button{
+    background-color: var(--color-secondary);
+    font-size: 20px;
+    border: 3px solid #ff6961;
+    border-radius: 5px;
+    width: 100%;
+}
+
+.remove-button:hover{
+    background-color: #ff6961;
 }

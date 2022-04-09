@@ -8,6 +8,11 @@ function Book(index, title, author, pages, read) {
     this.read = read;
 }
 
+Book.prototype.toggleRead = function()
+{
+    this.read = !this.read;
+}
+
 const content = document.querySelector(".content");
 const modal = document.querySelector('.form-modal');
 const newBookBtn = document.querySelector('.new-book-button');
@@ -40,7 +45,6 @@ function getBookData(){
     author = document.getElementById('author').value;
     pages = document.getElementById('pages').value;
     read = document.getElementById('read').checked;
-    console.log(read);
     return new Book(myLibrary.length, title,author,pages,read);
 }
 
@@ -57,28 +61,43 @@ function createCard(book){
     const title = document.createElement('p');
     const author = document.createElement('p');
     const pages = document.createElement('p');
-    const read = document.createElement('p');
-    const remove = document.createElement('button');
+    const readBtn = document.createElement('button');
+    const removeBtn = document.createElement('button');
 
-    remove.classList.add("remove-button");
-    remove.textContent = "Remove";
+    readBtn.classList.add("read-button");
+    removeBtn.classList.add("remove-button");
+    removeBtn.textContent = "Remove";
 
     //Stores the myLibrary index of a book card as an attribute
     card.setAttribute('data-index', myLibrary.length);
 
+    //Sets read toggle function
+    readBtn.onclick = function(){
+        book.toggleRead();
+        if(book.read){
+            card.classList.remove('unread-card')
+            card.classList.add('read-card')
+            readBtn.textContent = "Read";
+        }
+        else{
+            card.classList.remove('read-card')
+            card.classList.add('unread-card');
+            readBtn.textContent = "Unread";
+        }
+    }
     //Uses the index to remove card.
-    remove.onclick = function(){
+    removeBtn.onclick = function(){
         removeCard(card.getAttribute('data-index'));
     }
 
     //Sets read/unread style
     if(book.read){
         card.classList.add('read-card');
-        read.textContent =  "Read";
+        readBtn.textContent =  "Read";
     }
     else{
         card.classList.add('unread-card');
-        read.textContent =  "Unread";
+        readBtn.textContent =  "Unread";
     }
 
     title.textContent =  "\"" + book.title + "\"";
@@ -88,8 +107,8 @@ function createCard(book){
     card.appendChild(title);
     card.appendChild(author);
     card.appendChild(pages);
-    card.appendChild(read);
-    card.appendChild(remove);
+    card.appendChild(readBtn);
+    card.appendChild(removeBtn);
     content.appendChild(card);
 }
 
