@@ -27,6 +27,7 @@ newBookBtn.onclick = function(){
 window.onclick = function(event){
     if(event.target == modal){
         modal.style.visibility = "hidden";
+        form.reset();
     }
 }
 
@@ -99,7 +100,7 @@ function createCard(book){
         card.classList.add('unread-card');
         readBtn.textContent =  "Unread";
     }
-
+    title.style.fontStyle = "italic";
     title.textContent =  "\"" + book.title + "\"";
     author.textContent = 'by ' +book.author;
     pages.textContent = book.pages + ' pages';

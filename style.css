@@ -48,7 +48,7 @@ h1{
     margin-bottom: 10px;
 }
 
-.new-book-button:hover{
+.new-book-button:hover, .submit-button:hover{
     background-color: var(--color-accent);
 }
 
@@ -85,6 +85,12 @@ input{
 
 input:focus{
     outline: 2px solid var(--color-accent)
+}
+
+.submit-button{
+    font-size: 20px;
+    background-color: var(--color-background);
+    border: 2px solid var(--color-accent)
 }
 
 .content{
